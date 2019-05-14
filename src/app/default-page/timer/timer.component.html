@@ -1,3 +1,14 @@
-<p>
-  timer works!
-</p>
+<div class="timer-parent">
+  <mat-card>
+    <mat-card-title><div class="mat-display-4" id="timer-time">00:00</div></mat-card-title>
+    <mat-card-content>
+      <div>
+        <!-- TODO toggle visible buttons depending on timer state -->
+        <button mat-raised-button color="primary">Start</button>
+        <button mat-raised-button color="warn">Pause</button>
+        <button mat-raised-button disabled="true">Reset</button>
+        <!-- TODO toggle button being disabled depending on timer state  -->
+      </div>  
+    </mat-card-content>
+  </mat-card>  
+</div>
