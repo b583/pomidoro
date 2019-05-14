@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+// Modules
+import { DefaultPageModule } from 'src/app/default-page/default-page.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +20,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     BrowserAnimationsModule,
     // Material
-    MatToolbarModule
+    MatToolbarModule,
+    // Modules
+    DefaultPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
