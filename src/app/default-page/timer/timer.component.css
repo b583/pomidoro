@@ -5,3 +5,11 @@
 #timer-time {
     margin-bottom: 0;
 }
+
+#reset-spinner {
+    zoom: 0.3;
+    display: inline-block;
+    transform: translate(32px, 32px);
+    /* Spinner makes other elements not aligned properly */
+    /* TODO try to align controls and have spinner a little bit to the right */
+}
