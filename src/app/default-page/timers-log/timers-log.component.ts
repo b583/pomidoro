@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimersLogComponent implements OnInit {
 
-  constructor() { }
+  isDisabled: boolean;
+
+  constructor() {
+    this.isDisabled = false;
+  }
 
   ngOnInit() {
   }

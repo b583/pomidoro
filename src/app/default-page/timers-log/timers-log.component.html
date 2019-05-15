@@ -1,3 +1,33 @@
-<p>
-  timers-log works!
-</p>
+<div id="timers-log-parent" class="card-component">
+  <mat-card>
+    <mat-checkbox [(ngModel)]="isDisabled" labelPosition="before" color="primary">Hide Log</mat-checkbox>
+    <mat-card-content *ngIf="!isDisabled">
+      <mat-list>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Session started</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Pomodoro started</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Pomodoro ended</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Short Break started</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Short Break ended</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Long Break started</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Long Break ended</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+        <mat-list-item><i><b>Wed May 15 20:30:08</b></i></mat-list-item>
+        <mat-list-item>Session ended</mat-list-item>
+        <mat-divider [inset]=true></mat-divider>
+      </mat-list>            
+    </mat-card-content>
+  </mat-card>
+</div>
