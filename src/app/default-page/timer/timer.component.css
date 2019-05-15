@@ -1,15 +1,25 @@
-.timer-parent div {
+#timer-parent {
+    max-width: 350px;
     text-align: center;
+    justify-content: center;
+}
+
+#coming-next {
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 10px;
 }
 
 #timer-time {
     margin-bottom: 0;
+    color: black;
 }
 
 #reset-spinner {
-    zoom: 0.3;
-    display: inline-block;
-    transform: translate(32px, 32px);
-    /* Spinner makes other elements not aligned properly */
-    /* TODO try to align controls and have spinner a little bit to the right */
+    position: absolute;
+    margin: auto auto auto auto;
+    left: 0;
+    right: 0;
+    top: 4%;
+    zoom: 0.4;
 }
