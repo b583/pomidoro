@@ -57,7 +57,9 @@ export class TimerComponent implements OnInit {
   }
 
   resetTimer(): void {
-    this.pauseTimer();
+    if (this.intervalTimerSubscription !== undefined) {
+      this.pauseTimer();
+    }
     this.whichPomodoroInSession = 0;
     this.currentTimerType = TimerType.LONG_BREAK;
     this.nextTimer();
