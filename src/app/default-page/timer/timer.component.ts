@@ -29,41 +29,47 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     // TODO Add settings service
-    this.pomodoroLength = 25;
-    this.shortBreakLength = 5;
-    this.longBreakLength = 15;
+    // TODO change to 25, 5, 15 later
+    this.pomodoroLength = 1;
+    this.shortBreakLength = 1;
+    this.longBreakLength = 1;
     this.pomodorosInSession = 3;
 
     this.nextTimer();
   }
 
-  negateTimerRunning(): void {
-    this.isTimerRunning = !this.isTimerRunning;
-  }
-
   startTimer(): void {
-    this.negateTimerRunning();
-    // TODO implement
+    this.isTimerRunning = true;
+    this.intervalTimerSubscription
+      = this.intervalTimer.subscribe(n => this.handlePassedSecond());
   }
 
   pauseTimer(): void {
-    this.negateTimerRunning();
-    // TODO implement
+    this.isTimerRunning = false;
+    this.intervalTimerSubscription.unsubscribe();
   }
 
   skipTimer(): void {
-    this.negateTimerRunning();
+    if (this.intervalTimerSubscription !== undefined) {
+      this.pauseTimer();
+    }
     this.nextTimer();
   }
 
   resetTimer(): void {
-    this.negateTimerRunning();
+    this.pauseTimer();
     this.whichPomodoroInSession = 0;
+    this.currentTimerType = TimerType.LONG_BREAK;
     this.nextTimer();
   }
 
   handlePassedSecond(): void {
-    // TODO implement
+    this.timeRemaining -= 1000;
+    if (this.timeRemaining <= 0) {
+      // TODO Implement user notification
+      this.pauseTimer();
+      this.nextTimer();
+    }
   }
 
   nextTimer(): void {
@@ -105,21 +111,25 @@ export class TimerComponent implements OnInit {
   }
 
   generateTimeRemainingString(): string {
-    const min = Math.floor(this.timeRemaining / 60000);
-    const sec = Math.floor((this.timeRemaining - 60000 * min) / 1000);
-    let timeString = '';
-    if (min < 10) {
-      timeString += '0' + min;
+    if (this.timeRemaining >= 0) {
+      const min = Math.floor(this.timeRemaining / 60000);
+      const sec = Math.floor((this.timeRemaining - 60000 * min) / 1000);
+      let timeString = '';
+      if (min < 10) {
+        timeString += '0' + min;
+      } else {
+        timeString += min;
+      }
+      timeString += ':';
+      if (sec < 10) {
+        timeString += '0' + sec;
+      } else {
+        timeString += sec;
+      }
+      return timeString;
     } else {
-      timeString += min;
+      return '00:00';
     }
-    timeString += ':';
-    if (sec < 10) {
-      timeString += '0' + sec;
-    } else {
-      timeString += sec;
-    }
-    return timeString;
   }
 
 }
