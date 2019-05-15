@@ -1,5 +1,5 @@
 #timer-parent {
-    max-width: 350px;
+    min-width: 300px;
     text-align: center;
     justify-content: center;
 }
