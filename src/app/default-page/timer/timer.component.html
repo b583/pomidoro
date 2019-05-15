@@ -1,18 +1,20 @@
 <div id="timer-parent">
   <mat-card>
+    <mat-card-title>
+      {{this.currentTimerType}}
+    </mat-card-title>
     <mat-card-subtitle>
-      <span id="coming-next">Next: Short break</span>
-      <div class="mat-display-4" id="timer-time">00:00</div>
+      {{generateComingNextString()}}
+      <div class="mat-display-4" id="timer-time">{{generateTimeRemainingString()}}</div>
     </mat-card-subtitle>
     <mat-card-content>
       <div>
-        <!-- TODO toggle visible buttons depending on timer state -->
-        <button mat-raised-button color="primary">Start</button>
-        <button mat-raised-button color="warn">Pause</button>
-        <button mat-raised-button>Skip</button>
-        <button mat-raised-button disabled="true">Reset</button>
-        <!-- TODO toggle button being disabled depending on timer state  -->
-        <mat-progress-spinner id="reset-spinner" value="determinate" value=100></mat-progress-spinner>
+        <button mat-raised-button color="primary" *ngIf="!isTimerRunning" (click)="startTimer()">Start</button>
+        <button mat-raised-button color="warn" *ngIf="isTimerRunning" (click)="pauseTimer()">Pause</button>
+        <button mat-raised-button (click)="skipTimer()">Skip</button>
+        <button mat-raised-button (click)="resetTimer()">Reset</button>
+        <!-- TODO implement hold to reset with spinner as visual feedback -->
+        <mat-progress-spinner id="reset-spinner" value="determinate" value=0></mat-progress-spinner>
       </div>
     </mat-card-content>
   </mat-card>  
