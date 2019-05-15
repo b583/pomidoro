@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
-import { TimerType } from './timertype';
+import { TimerType } from '../../timertype';
 
 @Component({
   selector: 'app-timer',
