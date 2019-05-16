@@ -15,9 +15,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Services
 import { LogService } from '../log.service';
+import { TimerStatsComponent } from './timer-stats/timer-stats.component';
 
 @NgModule({
-  declarations: [DefaultPageComponent, TimerComponent, TimersLogComponent],
+  declarations: [DefaultPageComponent, TimerComponent, TimersLogComponent, TimerStatsComponent],
   imports: [
     CommonModule,
     FormsModule,
