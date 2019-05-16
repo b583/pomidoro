@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DefaultPageComponent } from './default-page/default-page.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimersLogComponent } from './timers-log/timers-log.component';
+import { TimerStatsComponent } from './timer-stats/timer-stats.component';
 
 // Material
 import { MatCardModule } from '@angular/material/card';
@@ -15,7 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Services
 import { LogService } from '../log.service';
-import { TimerStatsComponent } from './timer-stats/timer-stats.component';
+import { StatsService } from '../stats.service';
 
 @NgModule({
   declarations: [DefaultPageComponent, TimerComponent, TimersLogComponent, TimerStatsComponent],
@@ -32,6 +33,8 @@ import { TimerStatsComponent } from './timer-stats/timer-stats.component';
   ],
   providers: [
     // Services
-    LogService]
+    LogService,
+    StatsService
+  ]
 })
 export class DefaultPageModule { }
