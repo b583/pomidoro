@@ -1,4 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
+import { LogService } from 'src/app/log.service';
+import { LogEvent } from '../../log-event';
 
 @Component({
   selector: 'app-timers-log',
@@ -8,12 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class TimersLogComponent implements OnInit {
 
   isDisabled: boolean;
+  logEvents: LogEvent[];
 
-  constructor() {
+  constructor(private logService: LogService) {
     this.isDisabled = false;
   }
 
   ngOnInit() {
+    this.logEvents = this.logService.getLogEvents();
   }
 
 }

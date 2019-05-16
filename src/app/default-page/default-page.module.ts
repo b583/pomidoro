@@ -13,6 +13,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+// Services
+import { LogService } from '../log.service';
+
 @NgModule({
   declarations: [DefaultPageComponent, TimerComponent, TimersLogComponent],
   imports: [
@@ -24,7 +27,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     MatListModule,
     MatDividerModule,
-    MatCheckboxModule
-  ]
+    MatCheckboxModule,
+  ],
+  providers: [
+    // Services
+    LogService]
 })
 export class DefaultPageModule { }
