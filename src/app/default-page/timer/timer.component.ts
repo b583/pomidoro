@@ -1,6 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
 import { TimerType } from '../../timertype';
+import { LogService } from '../../log.service';
+import { LogEvent } from 'src/app/log-event';
 
 @Component({
   selector: 'app-timer',
@@ -21,7 +24,7 @@ export class TimerComponent implements OnInit {
   timeRemaining: number;
   timePassedString: string;
 
-  constructor() {
+  constructor(private logService: LogService) {
     this.isTimerRunning = false;
     this.whichPomodoroInSession = 0;
     this.intervalTimer = interval(1000);
@@ -39,6 +42,11 @@ export class TimerComponent implements OnInit {
   }
 
   startTimer(): void {
+
+    // Test LogService
+    // TODO remove later
+    this.logService.addEvent(new LogEvent("TEST"));
+
     this.isTimerRunning = true;
     this.intervalTimerSubscription
       = this.intervalTimer.subscribe(n => this.handlePassedSecond());
