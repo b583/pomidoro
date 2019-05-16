@@ -4,6 +4,7 @@ import { Observable, interval, Subscription } from 'rxjs';
 import { TimerType } from '../../timertype';
 import { LogService } from '../../log.service';
 import { LogEvent } from 'src/app/log-event';
+import { StatsService } from 'src/app/stats.service';
 
 @Component({
   selector: 'app-timer',
@@ -23,7 +24,7 @@ export class TimerComponent implements OnInit {
   intervalTimerSubscription: Subscription;
   timeRemaining: number;
 
-  constructor(private logService: LogService) {
+  constructor(private logService: LogService, private statsService: StatsService) {
     this.isTimerRunning = false;
     this.whichPomodoroInSession = 0;
     this.intervalTimer = interval(1000);
@@ -44,18 +45,21 @@ export class TimerComponent implements OnInit {
     this.logService.addEvent(new LogEvent(content));
   }
 
-  logFinishedTimer(): void {
+  onFinishedTimer(): void {
     switch (this.currentTimerType) {
       case TimerType.POMODORO: {
         this.logEvent('Pomodoro completed');
+        this.statsService.completePomodoro();
         break;
       }
       case TimerType.SHORT_BREAK: {
         this.logEvent('Short Break completed');
+        this.statsService.completeShortBreak();
         break;
       }
       case TimerType.LONG_BREAK: {
         this.logEvent('Long Break completed');
+        this.statsService.completeLongBreak();
         break;
       }
       default: {
@@ -95,7 +99,7 @@ export class TimerComponent implements OnInit {
     this.timeRemaining -= 1000;
     if (this.timeRemaining <= 0) {
       // TODO Implement user notification
-      this.logFinishedTimer();
+      this.onFinishedTimer();
       this.pauseTimer();
       this.nextTimer();
     }
