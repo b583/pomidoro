@@ -22,7 +22,6 @@ export class TimerComponent implements OnInit {
   intervalTimer: Observable<number>;
   intervalTimerSubscription: Subscription;
   timeRemaining: number;
-  timePassedString: string;
 
   constructor(private logService: LogService) {
     this.isTimerRunning = false;
@@ -41,12 +40,31 @@ export class TimerComponent implements OnInit {
     this.nextTimer();
   }
 
+  logEvent(content: string): void {
+    this.logService.addEvent(new LogEvent(content));
+  }
+
+  logFinishedTimer(): void {
+    switch (this.currentTimerType) {
+      case TimerType.POMODORO: {
+        this.logEvent('Pomodoro completed');
+        break;
+      }
+      case TimerType.SHORT_BREAK: {
+        this.logEvent('Short Break completed');
+        break;
+      }
+      case TimerType.LONG_BREAK: {
+        this.logEvent('Long Break completed');
+        break;
+      }
+      default: {
+        throw new Error('Not supported TimerType!');
+      }
+    }
+  }
+
   startTimer(): void {
-
-    // Test LogService
-    // TODO remove later
-    this.logService.addEvent(new LogEvent("TEST"));
-
     this.isTimerRunning = true;
     this.intervalTimerSubscription
       = this.intervalTimer.subscribe(n => this.handlePassedSecond());
@@ -77,6 +95,7 @@ export class TimerComponent implements OnInit {
     this.timeRemaining -= 1000;
     if (this.timeRemaining <= 0) {
       // TODO Implement user notification
+      this.logFinishedTimer();
       this.pauseTimer();
       this.nextTimer();
     }
