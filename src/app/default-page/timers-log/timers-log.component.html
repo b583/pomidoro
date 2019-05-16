@@ -1,6 +1,8 @@
 <div id="timers-log-parent" class="card-component">
   <mat-card>
-    <mat-checkbox [(ngModel)]="isEnabled" labelPosition="before" color="primary">Show Log</mat-checkbox>
+    <mat-card-title>Log
+      <mat-checkbox [(ngModel)]="isEnabled" labelPosition="after" color="primary"></mat-checkbox>
+    </mat-card-title>
     <mat-card-content *ngIf="isEnabled">
       <mat-list>
         <div *ngFor="let event of events.slice().reverse()">
