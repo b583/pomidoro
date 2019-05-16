@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { DefaultPageComponent } from './default-page/default-page.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimersLogComponent } from './timers-log/timers-log.component';
