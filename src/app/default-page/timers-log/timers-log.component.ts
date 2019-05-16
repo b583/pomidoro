@@ -10,11 +10,11 @@ import { LogEvent } from '../../log-event';
 })
 export class TimersLogComponent implements OnInit {
 
-  isDisabled: boolean;
+  isEnabled: boolean;
   events: LogEvent[] = [];
 
   constructor(private logService: LogService) {
-    this.isDisabled = false;
+    this.isEnabled = false;
   }
 
   ngOnInit() {

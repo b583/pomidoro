@@ -1,10 +1,10 @@
 <div id="timers-log-parent" class="card-component">
   <mat-card>
-    <mat-checkbox [(ngModel)]="isDisabled" labelPosition="before" color="primary">Hide Log</mat-checkbox>
-    <mat-card-content *ngIf="!isDisabled">
+    <mat-checkbox [(ngModel)]="isEnabled" labelPosition="before" color="primary">Show Log</mat-checkbox>
+    <mat-card-content *ngIf="isEnabled">
       <mat-list>
-        <div *ngFor="let event of events">
-          <mat-list-item><i><b>{{event.date}}</b></i></mat-list-item>
+        <div *ngFor="let event of events.slice().reverse()">
+          <mat-list-item><i><b>{{event.date | date:'mediumTime'}}</b></i></mat-list-item>
           <mat-list-item>{{event.content}}</mat-list-item>
           <mat-divider [inset]=true></mat-divider>
         </div>
