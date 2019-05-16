@@ -1,3 +1,12 @@
-<p>
-  timer-stats works!
-</p>
+<div class="card-component">
+  <mat-card>
+    <mat-card-title>Stats
+        <mat-checkbox [(ngModel)]="isEnabled" labelPosition="after" color="primary" class="title-checkbox"></mat-checkbox>
+    </mat-card-title>
+    <mat-card-content *ngIf="isEnabled">
+      <p>Completed Pomodoros:&nbsp;&nbsp;&nbsp;&nbsp;{{pomodoros}}</p>
+      <p>Completed Short Breaks:&nbsp;&nbsp;{{shortBreaks}}</p>
+      <p>Completed Long Breaks:&nbsp;&nbsp;&nbsp;{{longBreaks}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

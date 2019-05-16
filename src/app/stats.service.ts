@@ -7,6 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class StatsService {
 
+  // TODO as more stats are added - consider moving them into 1 or more classes
+
   private pomodorosCompleted: number;
   private shortBreaksCompleted: number;
   private longBreaksCompleted: number;
