@@ -6,8 +6,11 @@ export class Settings {
     shortBreakLength: number;
     longBreakLength: number;
 
-    isLogHidden: boolean;
-    isStatsHidden: boolean;
+    isLogCardHidden: boolean;
+    isLogCardDisabled: boolean;
+
+    isStatsCardHidden: boolean;
+    isStatsCardDisabled: boolean;
 
     constructor() {
         this.pomodorosInSession = 4;
@@ -15,8 +18,11 @@ export class Settings {
         this.shortBreakLength = 5;
         this.longBreakLength = 25;
 
-        this.isLogHidden = false;
-        this.isStatsHidden = false;
+        this.isLogCardHidden = false;
+        this.isLogCardDisabled = false;
+        
+        this.isStatsCardHidden = false;
+        this.isStatsCardDisabled = false;
     }
 
 }
