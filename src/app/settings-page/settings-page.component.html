@@ -21,7 +21,8 @@
   <mat-checkbox [(ngModel)]="settings.isStatsCardDisabled" labelPosition="before" color="primary">Disable Stats card</mat-checkbox><br/>
   <mat-checkbox [(ngModel)]="settings.isLogCardDisabled" labelPosition="before" color="primary">Disable Log card</mat-checkbox><br/>
 
-  <button (click)="saveSettings()">Save</button>
-  <!-- TODO upgrade to material -->
+  <br/>
+  <button mat-raised-button color="primary" (click)="saveSettings()">Save</button>
+  <!-- TODO enabled depending on a field validation method  -->
 
 </mat-card>
