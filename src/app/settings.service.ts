@@ -31,7 +31,7 @@ export class SettingsService {
     return false;
   }
 
-  private getSetting(setting: string): string {
+  getSetting(setting: string): string {
     return localStorage.getItem(setting);
   }
 
@@ -85,7 +85,11 @@ export class SettingsService {
     return this.settings;
   }
 
-  updateSettings(newSettings: Settings) {
+  updateSetting(settingName: string, setting:string): void {
+    localStorage.setItem(settingName, setting);
+  }
+
+  updateSettings(newSettings: Settings): void {
     this.settings = newSettings;
   
     localStorage.setItem(SettingsService.POMODOROS_IN_SESSION, this.settings.pomodorosInSession.toString());
