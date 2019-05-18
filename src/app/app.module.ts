@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 // Modules
 import { DefaultPageModule } from 'src/app/default-page/default-page.module';
+import { SettingsPageModule } from 'src/app/settings-page/settings-page.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DefaultPageModule } from 'src/app/default-page/default-page.module';
     // Material
     MatToolbarModule,
     // Modules
-    DefaultPageModule
+    DefaultPageModule,
+    SettingsPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
