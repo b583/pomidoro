@@ -1,6 +1,9 @@
 
-<mat-toolbar>
-  <span><a class="mat-toolbar-a" [routerLink]="['/']">{{title}}</a></span>
+<mat-toolbar color="primary" class="toolbar">
+  <div><a [routerLink]="['/']">{{title}}</a></div>
+  <div>
+    <span><a [routerLink]="['/settings']">Settings</a></span>
+  </div>
 </mat-toolbar>
 
 <!-- TODO multiple pages -->

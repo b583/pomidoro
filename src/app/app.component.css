@@ -1,4 +1,9 @@
-.mat-toolbar-a {
-    color: black;
+.toolbar {
+    justify-content: space-between;    
+}
+
+a {
+    color: whitesmoke;
     text-decoration: none;
+    padding-right: 1rem;
 }
