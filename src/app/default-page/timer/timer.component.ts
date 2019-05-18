@@ -5,6 +5,7 @@ import { TimerType } from '../../timertype';
 import { LogService } from '../../log.service';
 import { LogEvent } from 'src/app/log-event';
 import { StatsService } from 'src/app/stats.service';
+import { SettingsService } from 'src/app/settings.service';
 
 @Component({
   selector: 'app-timer',
@@ -24,7 +25,7 @@ export class TimerComponent implements OnInit {
   intervalTimerSubscription: Subscription;
   timeRemaining: number;
 
-  constructor(private logService: LogService, private statsService: StatsService) {
+  constructor(private logService: LogService, private statsService: StatsService, private settingsService: SettingsService) {
     this.isTimerRunning = false;
     this.whichPomodoroInSession = 0;
     this.intervalTimer = interval(1000);
@@ -32,11 +33,10 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     // TODO Add settings service
-    // TODO change to 25, 5, 15 later
-    this.pomodoroLength = 1;
-    this.shortBreakLength = 1;
-    this.longBreakLength = 1;
-    this.pomodorosInSession = 3;
+    this.pomodoroLength = parseInt(this.settingsService.getSetting(SettingsService.POMODORO_LENGTH));
+    this.shortBreakLength = parseInt(this.settingsService.getSetting(SettingsService.SHORT_BREAK_LENGTH));
+    this.longBreakLength = parseInt(this.settingsService.getSetting(SettingsService.LONG_BREAK_LENGTH));
+    this.pomodorosInSession = parseInt(this.settingsService.getSetting(SettingsService.POMODOROS_IN_SESSION));
 
     this.nextTimer();
   }
