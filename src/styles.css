@@ -11,3 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     position: relative;
     bottom: 2px;
 }
+
+.page-header {
+    margin: 10px 10px 10px 10px;
+}
