@@ -1,9 +1,23 @@
 <div class="mat-display-2 page-header">Settings</div>
 <mat-card>
+
+
+  <!-- TODO form validation -->
   <mat-card-title>Pomodoro</mat-card-title>
   <mat-form-field>
-    <input matInput placeholder="Pomodoro lengh" value=25>
-  </mat-form-field>
-</mat-card>
+    <input matInput placeholder="Pomodoros in one session" [(ngModel)]="settings.pomodorosInSession">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Pomodoro length" [(ngModel)]="settings.pomodoroLength">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Short Break length" [(ngModel)]="settings.shortBreakLength">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Long Break length" [(ngModel)]="settings.longBreakLength">
+  </mat-form-field><br>
 
-<!-- TODO form validation -->
+  <mat-card-title>View</mat-card-title>
+  <!-- TODO -->
+
+</mat-card>

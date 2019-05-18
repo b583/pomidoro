@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { SettingsPageComponent } from './settings-page.component';
 
 // Material
@@ -14,6 +15,7 @@ import { SettingsService } from '../settings.service';
   declarations: [SettingsPageComponent],
   imports: [
     CommonModule,
+    FormsModule,
     // Material
     MatCardModule,
     MatFormFieldModule,

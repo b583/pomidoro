@@ -4,7 +4,7 @@ export class Settings {
     pomodorosInSession: number;
     pomodoroLength: number;
     shortBreakLength: number;
-    longBreakNumber: number;
+    longBreakLength: number;
 
     isLogHidden: boolean;
     isStatsHidden: boolean;
@@ -13,7 +13,7 @@ export class Settings {
         this.pomodorosInSession = 4;
         this.pomodoroLength = 25;
         this.shortBreakLength = 5;
-        this.longBreakNumber = 25;
+        this.longBreakLength = 25;
 
         this.isLogHidden = false;
         this.isStatsHidden = false;
