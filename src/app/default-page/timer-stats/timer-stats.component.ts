@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { StatsService } from 'src/app/stats.service';
+import { Stats } from 'src/app/stats';
 
 @Component({
   selector: 'app-timer-stats',
@@ -9,29 +10,20 @@ import { StatsService } from 'src/app/stats.service';
 })
 export class TimerStatsComponent implements OnInit {
 
-  private pomodoros: number;
-  private shortBreaks: number;
-  private longBreaks: number;
+  private stats: Stats;
   private isEnabled: boolean;
 
   constructor(private statsService: StatsService) { 
-    this.pomodoros = 0;
-    this.shortBreaks = 0;
-    this.longBreaks = 0;
     this.isEnabled = true;
   }
 
   ngOnInit() {
+    this.stats = this.statsService.getStats();
+    this.statsService.getObservableStats().subscribe(s => this.nextStats(s));
   }
 
-  registerToStatsService(): void {
-    this.statsService.getObservablePomodoros().subscribe(n => this.nextPomodoros(n));
-    this.statsService.getObservableShortBreaks().subscribe(n => this.nextShortBreaks(n));
-    this.statsService.getObservableLongBreaks().subscribe(n => this.nextLongBreaks(n));
+  nextStats(s: Stats): void {
+    this.stats = s;
   }
-
-  nextPomodoros(n: number): void { this.pomodoros = n; console.log('test')}
-  nextShortBreaks(n: number): void { this.shortBreaks = n; }
-  nextLongBreaks(n: number): void { this.longBreaks = n; }
 
 }

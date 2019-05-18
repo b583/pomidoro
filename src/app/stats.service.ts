@@ -1,53 +1,77 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Stats } from './stats';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
 
-  // TODO as more stats are added - consider moving them into 1 or more classes
+  static readonly POMODOROS_DONE = 'pomodorosDone';
+  static readonly SHORT_BREAKS_DONE = 'shortBreaksDone';
+  static readonly LONG_BREAKS_DONE = 'longBreaksDone';
 
-  private pomodorosCompleted: number;
-  private shortBreaksCompleted: number;
-  private longBreaksCompleted: number;
-
-  private observablePomodorosCompleted: BehaviorSubject<number> = new BehaviorSubject(0);
-  private observableShortBreaksCompleted: BehaviorSubject<number> = new BehaviorSubject(0);
-  private observableLongBreaksCompleted: BehaviorSubject<number> = new BehaviorSubject(0);
+  private stats: Stats;
+  private observableStats: BehaviorSubject<Stats>
+    = new BehaviorSubject(new Stats());
 
   constructor() {
-    this.pomodorosCompleted = 0;
-    this.shortBreaksCompleted = 0;
-    this.longBreaksCompleted = 0;
+    this.stats = this.getStatsFromStorage();
+    this.updateStats(this.stats);
   }
 
-  getObservablePomodoros(): Observable<number> {
-    return this.observablePomodorosCompleted.asObservable();
+  updateStats(newStats: Stats): void {
+    this.stats = newStats;
+    localStorage.setItem(StatsService.POMODOROS_DONE, this.stats.donePomodoros.toString());
+    localStorage.setItem(StatsService.SHORT_BREAKS_DONE, this.stats.doneShortBreaks.toString());
+    localStorage.setItem(StatsService.LONG_BREAKS_DONE, this.stats.doneLongBreaks.toString());
+    this.observableStats.next(this.stats);
   }
 
-  getObservableShortBreaks(): Observable<number> {
-    return this.observableShortBreaksCompleted.asObservable();
+  getStatsFromStorage(): Stats {
+    let newStats = new Stats();
+
+    if (this.getSetting(StatsService.POMODOROS_DONE) !== null) {
+      newStats.donePomodoros = parseInt(this.getSetting(StatsService.POMODOROS_DONE));
+    }
+
+    if (this.getSetting(StatsService.SHORT_BREAKS_DONE) !== null) {
+      newStats.doneShortBreaks = parseInt(this.getSetting(StatsService.SHORT_BREAKS_DONE));
+    }
+
+    if (this.getSetting(StatsService.LONG_BREAKS_DONE) !== null) {
+      newStats.doneLongBreaks = parseInt(this.getSetting(StatsService.LONG_BREAKS_DONE));
+    }
+
+    return newStats;
   }
 
-  getObservableLongBreaks(): Observable<number> {
-    return this.observableLongBreaksCompleted.asObservable();
+  incrementPomodoros(): void {
+    this.stats.donePomodoros = this.stats.donePomodoros + 1;
+    this.updateStats(this.stats);
   }
 
-  completePomodoro(): void {
-    this.pomodorosCompleted++;
-    this.observablePomodorosCompleted.next(this.pomodorosCompleted);
+  incrementShortBreaks(): void {
+    this.stats.doneShortBreaks = this.stats.doneShortBreaks + 1;
+    this.updateStats(this.stats);
   }
 
-  completeShortBreak(): void {
-    this.shortBreaksCompleted++;
-    this.observableShortBreaksCompleted.next(this.shortBreaksCompleted);
+  incrementLongBreaks(): void {
+    this.stats.doneLongBreaks = this.stats.doneLongBreaks + 1;
+    this.updateStats(this.stats);
   }
 
-  completeLongBreak(): void {
-    this.longBreaksCompleted++;
-    this.observableLongBreaksCompleted.next(this.longBreaksCompleted);
+  getSetting(setting: string): string {
+    return localStorage.getItem(setting);
+  }
+
+  getObservableStats(): Observable<Stats> {
+    return this.observableStats.asObservable();
+  }
+
+  getStats(): Stats {
+    return this.stats;
   }
 
 }

@@ -5,6 +5,7 @@ import { TimerType } from '../../timertype';
 import { LogService } from '../../log.service';
 import { LogEvent } from 'src/app/log-event';
 import { StatsService } from 'src/app/stats.service';
+import { Stats } from 'src/app/stats';
 import { SettingsService } from 'src/app/settings.service';
 
 @Component({
@@ -49,17 +50,17 @@ export class TimerComponent implements OnInit {
     switch (this.currentTimerType) {
       case TimerType.POMODORO: {
         this.logEvent('Pomodoro completed');
-        this.statsService.completePomodoro();
+        this.statsService.incrementPomodoros();
         break;
       }
       case TimerType.SHORT_BREAK: {
         this.logEvent('Short Break completed');
-        this.statsService.completeShortBreak();
+        this.statsService.incrementShortBreaks();
         break;
       }
       case TimerType.LONG_BREAK: {
         this.logEvent('Long Break completed');
-        this.statsService.completeLongBreak();
+        this.statsService.incrementLongBreaks();
         break;
       }
       default: {
