@@ -7,6 +7,7 @@ import { SettingsPageComponent } from './settings-page.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //Services
 import { SettingsService } from '../settings.service';
@@ -19,7 +20,8 @@ import { SettingsService } from '../settings.service';
     // Material
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     // Services

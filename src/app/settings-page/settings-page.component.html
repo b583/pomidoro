@@ -1,7 +1,7 @@
 <div class="mat-display-2 page-header">Settings</div>
 <mat-card>
 
-
+  <!-- TODO floating save button -->
   <!-- TODO form validation -->
   <mat-card-title>Pomodoro</mat-card-title>
   <mat-form-field>
@@ -18,6 +18,10 @@
   </mat-form-field><br>
 
   <mat-card-title>View</mat-card-title>
-  <!-- TODO -->
+  <mat-checkbox [(ngModel)]="settings.isStatsCardDisabled" labelPosition="before" color="primary">Disable Stats card</mat-checkbox><br/>
+  <mat-checkbox [(ngModel)]="settings.isLogCardDisabled" labelPosition="before" color="primary">Disable Log card</mat-checkbox><br/>
+
+  <button (click)="saveSettings()">Save</button>
+  <!-- TODO upgrade to material -->
 
 </mat-card>

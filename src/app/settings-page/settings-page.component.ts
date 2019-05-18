@@ -10,13 +10,16 @@ import { SettingsService } from '../settings.service';
 })
 export class SettingsPageComponent implements OnInit {
 
-  settings: Settings;
+  private settings: Settings;
 
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
     this.settings = this.settingsService.getSettings();
-    console.log(this.settings.pomodoroLength);
+  }
+
+  private saveSettings(): void {
+    this.settingsService.updateSettings(this.settings);
   }
 
 }
